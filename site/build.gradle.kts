@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.kobweb.application)
     alias(libs.plugins.serialization.plugin)
     // alias(libs.plugins.kobwebx.markdown)
-    kotlin("jvm") version "1.0.0"
 }
 
 group = "com.example.blogmultiplatform"
@@ -68,9 +67,7 @@ kotlin {
         }
     }
 }
-dependencies {
-    implementation(kotlin("stdlib"))
-}
+
 repositories {
     mavenCentral()
 }
