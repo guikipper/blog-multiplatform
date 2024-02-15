@@ -18,6 +18,7 @@ import com.example.blogmultiplatform.util.Constants.SIDE_PANEL_WIDTH
 import com.example.blogmultiplatform.util.fetchMyPosts
 import com.example.blogmultiplatform.util.isUserLoggedIn
 import com.example.blogmultiplatform.util.noBorder
+import com.example.blogmultiplatform.util.testPosts
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
@@ -45,9 +46,11 @@ import com.varabyte.kobweb.silk.components.forms.SwitchSize
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
+import kotlinx.browser.localStorage
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Button
+import org.w3c.dom.get
 
 @Page
 @Composable
@@ -63,12 +66,15 @@ fun MyPostsScreen() {
     var selectable by remember { mutableStateOf(false) }
     var spanText by remember { mutableStateOf("Select") }
     val myPosts = remember { mutableStateListOf<PostWithoutDetails>() }
+    val userId = remember { localStorage["userId"] }
 
     LaunchedEffect(Unit) {
+        testPosts(id = userId)
         fetchMyPosts(
             skip = 0,
             onSuccess = {
                 if (it is ApiListResponse.Success) {
+
                     myPosts.addAll(it.data)
                 }
             },

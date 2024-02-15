@@ -40,6 +40,20 @@ suspend fun readMyPosts(context: ApiContext) {
     catch (e: Exception) {
         context.logger.info("APIEXPECTION $e")
         context.res.setBodyText(
+            Json.encodeToString(ApiListResponse.Error(message = e.message.toString()))
+        )
+    }
+}
+
+@Api(routeOverride = "testPosts")
+suspend fun testPosts(context: ApiContext) {
+    try {
+        val id = context.req.params["id"] ?: ""
+        println("The ID at the Endpoint: " + id)
+    }
+    catch (e: Exception) {
+        context.logger.info("APIEXPECTION $e")
+        context.res.setBodyText(
 
             Json.encodeToString(ApiListResponse.Error(message = e.message.toString()))
         )

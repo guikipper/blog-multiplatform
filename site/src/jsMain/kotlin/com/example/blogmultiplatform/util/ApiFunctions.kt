@@ -37,7 +37,7 @@ suspend fun checkUserExistence(user: User): UserWithoutPassword? {
 
 suspend fun checkUserId(id: String): Boolean {
     return try {
-        println("Dentro de checkUserID em API FUNCTIONS, segue o ID: "+id)
+
         val result = window.api.tryPost(
             apiPath = "checkuserid",
             body = Json.encodeToString(id).encodeToByteArray()
@@ -115,6 +115,20 @@ suspend fun createPost(post: Post): Boolean {
     }
 }
 
+suspend fun testPosts(id: String?): String {
+    try {
+        println("The ID: " + id)
+        val result = window.api.tryGet(
+            apiPath = "testPosts?id=$id"
+        )
+        println(result)
+        return ""
+    } catch (e: Exception) {
+        println("DEU ERRO: " + e.message)
+        return ""
+    }
+}
+
 suspend fun fetchMyPosts(
     skip: Int,
     onSuccess: (ApiListResponse) -> Unit,
@@ -123,7 +137,8 @@ suspend fun fetchMyPosts(
     try {
         val result = window.api.tryGet(
             apiPath = "readmyposts?skip=$skip&author=${localStorage["username"]}"
-        )?.decodeToString()
+        )
+        println(result)
         onSuccess(Json.decodeFromString(result.toString()))
     } catch (e: Exception) {
         onError(e)

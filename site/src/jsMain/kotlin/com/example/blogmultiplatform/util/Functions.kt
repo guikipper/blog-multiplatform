@@ -50,7 +50,6 @@ fun logout() {
     localStorage["remember"] = "false"
     localStorage["userId"] = ""
     localStorage["username"] = ""
-
 }
 
 fun getEditor() = document.getElementById(Id.editor) as HTMLTextAreaElement

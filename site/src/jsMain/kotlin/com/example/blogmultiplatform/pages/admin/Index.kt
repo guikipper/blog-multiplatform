@@ -51,10 +51,12 @@ import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
+import kotlinx.browser.localStorage
 import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vh
+import org.w3c.dom.get
 
 @Page
 @Composable
@@ -63,6 +65,7 @@ fun HomePage() {
         HomeScreen()
     }
 }
+
 
 @Composable
 fun HomeScreen() {
@@ -80,6 +83,8 @@ fun HomeScreen() {
             randomJoke = randomJoke
         )
         AddButton()
+        val userId = remember { localStorage["userId"] }
+
     }
 }
 
