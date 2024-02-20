@@ -34,7 +34,7 @@ suspend fun readMyPosts(context: ApiContext) {
         val author = context.req.params["author"] ?: ""
         val myPosts = context.data.getValue<MongoDB>().readMyPosts(skip = skip, author = author)
         context.res.setBodyText(
-            Json.encodeToString(ApiListResponse.Success(data = myPosts))
+            Json.encodeToString(ApiListResponse.Success(data = myPosts).toString())
         )
     }
     catch (e: Exception) {
@@ -45,8 +45,8 @@ suspend fun readMyPosts(context: ApiContext) {
     }
 }
 
-@Api(routeOverride = "testPosts")
-suspend fun testPosts(context: ApiContext) {
+@Api(routeOverride = "testposts")
+fun testPosts(context: ApiContext) {
     try {
         val id = context.req.params["id"] ?: ""
         println("The ID at the Endpoint: " + id)
@@ -54,7 +54,6 @@ suspend fun testPosts(context: ApiContext) {
     catch (e: Exception) {
         context.logger.info("APIEXPECTION $e")
         context.res.setBodyText(
-
             Json.encodeToString(ApiListResponse.Error(message = e.message.toString()))
         )
     }

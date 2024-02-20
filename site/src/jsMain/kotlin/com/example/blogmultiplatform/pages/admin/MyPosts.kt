@@ -17,8 +17,8 @@ import com.example.blogmultiplatform.util.Constants.FONT_FAMILY
 import com.example.blogmultiplatform.util.Constants.SIDE_PANEL_WIDTH
 import com.example.blogmultiplatform.util.fetchMyPosts
 import com.example.blogmultiplatform.util.isUserLoggedIn
-import com.example.blogmultiplatform.util.noBorder
-import com.example.blogmultiplatform.util.testPosts
+//import com.example.blogmultiplatform.util.noBorder
+//import com.example.blogmultiplatform.util.testPosts
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
@@ -66,20 +66,19 @@ fun MyPostsScreen() {
     var selectable by remember { mutableStateOf(false) }
     var spanText by remember { mutableStateOf("Select") }
     val myPosts = remember { mutableStateListOf<PostWithoutDetails>() }
-    val userId = remember { localStorage["userId"] }
+    //val userId = remember { localStorage["userId"] }
 
     LaunchedEffect(Unit) {
-        testPosts(id = userId)
+        //testPosts(id = userId)
         fetchMyPosts(
             skip = 0,
             onSuccess = {
                 if (it is ApiListResponse.Success) {
-
                     myPosts.addAll(it.data)
                 }
             },
             onError = {
-                println(it)
+                println("Erro..." + it)
             }
         )
     }
@@ -136,7 +135,7 @@ fun MyPostsScreen() {
                             .color(Colors.White)
                             .borderRadius(r = 4.px)
                             .fontSize(14.px)
-                            .noBorder()
+                            //.noBorder()
                             .fontFamily(FONT_FAMILY)
                             .fontWeight(FontWeight.Medium)
                             .onClick {

@@ -27,6 +27,7 @@ import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.text.SpanText
+import kotlinx.serialization.json.Json
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 

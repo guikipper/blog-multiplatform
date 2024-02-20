@@ -426,7 +426,7 @@ fun ThumbnailUploader(
                 .onClick {
                     document.loadDataUrlFromDisk(
                         accept = "image/png, imagem/jpeg",
-                        onLoaded = {
+                        onLoad = {
                             onThumbnailSelect(filename, it) //chama a função lambda definida acima
                             //println("Filename: $filename")
                             //println("It: $it")

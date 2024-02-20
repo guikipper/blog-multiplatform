@@ -119,7 +119,7 @@ suspend fun testPosts(id: String?): String {
     try {
         println("The ID: " + id)
         val result = window.api.tryGet(
-            apiPath = "testPosts?id=$id"
+            apiPath = "testposts?id=$id"
         )
         println(result)
         return ""
@@ -139,8 +139,9 @@ suspend fun fetchMyPosts(
             apiPath = "readmyposts?skip=$skip&author=${localStorage["username"]}"
         )
         println(result)
-        onSuccess(Json.decodeFromString(result.toString()))
+        //onSuccess(Json.decodeFromString(result.toString()))
     } catch (e: Exception) {
+        println("ERRO NA CHAMADA API DO CLIENTEEEEE")
         onError(e)
     }
 }
